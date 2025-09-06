@@ -30,239 +30,239 @@ const flowers = [
     id: 1,
     image: "/assets/flowers/CoralineVipGrand_420x.webp",
     title: "Caroline",
-    price: 2.195,
+    price: 1.100,
   },
   {
     id: 2,
     image: "/assets/flowers/AriannaClassic_420x.webp",
     title: "Arianna",
-    price: 2.195,
+    price: 1.100,
   },
   {
     id: 3,
     image: "/assets/flowers/BiancaVipGrand_420x.webp",
     title: "Bianca",
-    price: 2.195,
+    price: 1.100,
   },
   {
     id: 4,
     image: "/assets/flowers/AmelieClassic_420x.webp",
     title: "Amelie",
-    price: 2.195,
+    price: 1.100,
   },
   {
     id: 5,
     image:
       "/assets/flowers/Caraline-HB_27e7e0e3-ad23-4360-813d-88ff965be07f_420x.webp",
     title: "Caroline Hatbox",
-    price: 1.995,
+    price: 1000,
   },
   {
     id: 6,
     image:
       "/assets/flowers/Arianna_41bbade1-3991-45f1-ba65-f67ddcd67c74_420x.webp",
     title: "Arianna Hatbox",
-    price: 1.995,
+    price: 1000,
   },
   {
     id: 7,
     image:
       "/assets/flowers/1Tall-HB-Bianca_5ce33e97-a4cb-453d-8836-78245a42f660_420x.webp",
     title: "Bianca Hatbox",
-    price: 1.995,
+    price: 1000,
   },
   {
     id: 8,
     image: "/assets/flowers/Violet-HB_420x.webp",
     title: "Violet Hatbox",
-    price: 1.995,
+    price: 1000,
   },
   {
     id: 9,
     image:
       "/assets/flowers/RED365_6c6b0243-9efe-4a1c-9f41-8d97582521bb_420x.webp",
     title: "365 Red Roses",
-    price: 3.995,
+    price: 1.900,
   },
   {
     id: 10,
     image:
       "/assets/flowers/Red365_37b2d92b-f405-4ec7-b6d5-ab237b5001f1_420x.webp",
     title: "365 Red Roses Hatbox",
-    price: 3.995,
+    price: 1.900,
   },
   {
     id: 11,
     image: "/assets/flowers/200REDs_420x.webp",
     title: "365 Red Roses Basket",
-    price: 3.995,
+    price: 1.900,
   },
   {
     id: 12,
     image: "/assets/flowers/red_868e4eae-cb20-4342-836d-c9532a0ec3ac_420x.webp",
     title: "365 Red Roses Stand",
-    price: 4.495,
+    price: 2.250,
   },
   {
     id: 13,
     image:
       "/assets/flowers/Pink365_84ca3c0d-bf39-40ba-b59a-c753a173be11_420x.webp",
     title: "365 Pink Roses",
-    price: 3.995,
+    price: 1.900,
   },
   {
     id: 14,
     image:
       "/assets/flowers/Pink365_0b93a36e-79b9-4240-9929-ca42d160126b_420x.webp",
     title: "365 Pink Roses Hatbox",
-    price: 3.995,
+    price: 1.900,
   },
   {
     id: 15,
     image:
       "/assets/flowers/365Pinks_a06dd531-3b32-4fb5-bfd1-ecb4f0c375cf_420x.webp",
     title: "365 Pink Roses Basket",
-    price: 3.995,
+    price: 1.900,
   },
   {
     id: 16,
     image:
       "/assets/flowers/Pink_faa911db-f4a2-41c5-89e2-fb81b169eabc_420x.webp",
     title: "365 Pink Roses Stand",
-    price: 4.495,
+    price: 2.250,
   },
   {
     id: 17,
     image: "/assets/flowers/365HandtiedBlush_420x.webp",
     title: "365 Blush",
-    price: 3.995,
+    price: 1.900,
   },
   {
     id: 18,
     image:
       "/assets/flowers/Blush365_eaea9ec2-d1ea-4b9a-9503-b7d4c548c180_420x.webp",
     title: "365 Blush Roses Hatbox",
-    price: 3.995,
+    price: 1.900,
   },
   {
     id: 19,
     image:
       "/assets/flowers/NEW365Whitests_47cda495-2360-4b22-8a05-67cfef40b5ff_420x.webp",
     title: "365 White Roses Basket",
-    price: 3.995,
+    price: 1.900,
   },
   {
     id: 20,
     image:
       "/assets/flowers/White365_8540f020-e1dd-4ba7-a4c5-af2b9f47bfab_420x.webp",
     title: "365 White Roses Hatbox",
-    price: 3.995,
+    price: 1.900,
   },
   {
     id: 21,
     image: "/assets/flowers/500White_420x.webp",
     title: "500 Red Roses Basket",
-    price: 5.995,
+    price: 3000,
   },
   {
     id: 22,
     image:
       "/assets/flowers/500-PINK_50486bc3-047e-4efd-9f02-d54d1acf8eb4_420x.webp",
     title: "500 Pink Roses Basket",
-    price: 5.995,
+    price: 3000,
   },
   {
     id: 23,
     image:
       "/assets/flowers/500-ALL-White_06ee0bf0-b3ea-4d2e-9ae6-53268ac4c436_420x.webp",
     title: "500 White Roses Basket",
-    price: 5.995,
+    price: 3000,
   },
   {
     id: 24,
     image: "/assets/flowers/Blush-White_420x.webp",
     title: "500 Blush Roses Basket",
-    price: 5.995,
+    price: 3000,
   },
   {
     id: 25,
     image: "/assets/flowers/EDitedTall-HB-Coraline_420x.webp",
     title: "Royale Coraline Hatbox",
-    price: 4.995,
+    price: 2.500,
   },
   {
     id: 26,
     image:
       "/assets/flowers/Arianna_6f7a7dee-db1b-46a8-9728-7e6574a19e2a_420x.webp",
     title: "Royale Arianna Hatbox",
-    price: 4.995,
+    price: 2.500,
   },
   {
     id: 27,
     image:
       "/assets/flowers/1Tall-HB-Bianca_5ce33e97-a4cb-453d-8836-78245a42f660_420x.webp",
     title: "Royale Bianca Hatbox",
-    price: 4.995,
+    price: 2.500,
   },
   {
     id: 28,
     image:
       "/assets/flowers/Tall-HB-Violet_7ead499c-20db-4764-aaa2-40536045a126_420x.webp",
     title: "Royale Violet Hatbox",
-    price: 4.995,
+    price: 2.500,
   },
   {
     id: 29,
     image: "/assets/flowers/500White_420x.webp",
     title: "500 Red Roses XXL",
-    price: 5.995,
+    price: 3000,
   },
   {
     id: 30,
     image:
       "/assets/flowers/500-PINK_50486bc3-047e-4efd-9f02-d54d1acf8eb4_420x.webp",
     title: "500 Pink Roses XXL",
-    price: 5.995,
+    price: 3000,
   },
   {
     id: 31,
     image:
       "/assets/flowers/500-ALL-White_06ee0bf0-b3ea-4d2e-9ae6-53268ac4c436_420x.webp",
     title: "500 White Roses XXL",
-    price: 5.995,
+    price: 3000,
   },
   {
     id: 32,
     image: "/assets/flowers/Blush-White_420x.webp",
     title: "500 Blush Roses XXL",
-    price: 5.995,
+    price: 3000,
   },
   {
     id: 33,
     image:
       "/assets/flowers/999White_4529b7ab-d2a8-4be5-b670-922950f1d4c7_420x.webp",
     title: "999 Red Roses Hatbox",
-    price: 11.995,
+    price: 5500,
   },
   {
     id: 34,
     image:
       "/assets/flowers/999WithPodium_404e5341-400f-4a3e-8733-f5991cf716d8_420x.webp",
     title: "999 Red Roses Stand",
-    price: 13.995,
+    price: 5.950,
   },
   {
     id: 35,
     image:
       "/assets/flowers/Teddy_bf4028b2-fd1c-4868-a1e3-493f446cbd14_420x.webp",
     title: "Teddy",
-    price: 16.995,
+    price: 8.500,
   },
   {
     id: 36,
     image: "/assets/flowers/NEWWWWWW_420x.webp",
     title: "Labubu",
-    price: 34.995,
+    price: 16.250,
   },
 ];
 
