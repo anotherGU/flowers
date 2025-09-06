@@ -1,5 +1,6 @@
 import styles from "./Main.module.css";
 import { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 interface Flower {
   image: string;
@@ -30,25 +31,25 @@ const flowers = [
     id: 1,
     image: "/assets/flowers/CoralineVipGrand_420x.webp",
     title: "Caroline",
-    price: 1.100,
+    price: 1.1,
   },
   {
     id: 2,
     image: "/assets/flowers/AriannaClassic_420x.webp",
     title: "Arianna",
-    price: 1.100,
+    price: 1.1,
   },
   {
     id: 3,
     image: "/assets/flowers/BiancaVipGrand_420x.webp",
     title: "Bianca",
-    price: 1.100,
+    price: 1.1,
   },
   {
     id: 4,
     image: "/assets/flowers/AmelieClassic_420x.webp",
     title: "Amelie",
-    price: 1.100,
+    price: 1.1,
   },
   {
     id: 5,
@@ -82,81 +83,81 @@ const flowers = [
     image:
       "/assets/flowers/RED365_6c6b0243-9efe-4a1c-9f41-8d97582521bb_420x.webp",
     title: "365 Red Roses",
-    price: 1.900,
+    price: 1.9,
   },
   {
     id: 10,
     image:
       "/assets/flowers/Red365_37b2d92b-f405-4ec7-b6d5-ab237b5001f1_420x.webp",
     title: "365 Red Roses Hatbox",
-    price: 1.900,
+    price: 1.9,
   },
   {
     id: 11,
     image: "/assets/flowers/200REDs_420x.webp",
     title: "365 Red Roses Basket",
-    price: 1.900,
+    price: 1.9,
   },
   {
     id: 12,
     image: "/assets/flowers/red_868e4eae-cb20-4342-836d-c9532a0ec3ac_420x.webp",
     title: "365 Red Roses Stand",
-    price: 2.250,
+    price: 2.25,
   },
   {
     id: 13,
     image:
       "/assets/flowers/Pink365_84ca3c0d-bf39-40ba-b59a-c753a173be11_420x.webp",
     title: "365 Pink Roses",
-    price: 1.900,
+    price: 1.9,
   },
   {
     id: 14,
     image:
       "/assets/flowers/Pink365_0b93a36e-79b9-4240-9929-ca42d160126b_420x.webp",
     title: "365 Pink Roses Hatbox",
-    price: 1.900,
+    price: 1.9,
   },
   {
     id: 15,
     image:
       "/assets/flowers/365Pinks_a06dd531-3b32-4fb5-bfd1-ecb4f0c375cf_420x.webp",
     title: "365 Pink Roses Basket",
-    price: 1.900,
+    price: 1.9,
   },
   {
     id: 16,
     image:
       "/assets/flowers/Pink_faa911db-f4a2-41c5-89e2-fb81b169eabc_420x.webp",
     title: "365 Pink Roses Stand",
-    price: 2.250,
+    price: 2.25,
   },
   {
     id: 17,
     image: "/assets/flowers/365HandtiedBlush_420x.webp",
     title: "365 Blush",
-    price: 1.900,
+    price: 1.9,
   },
   {
     id: 18,
     image:
       "/assets/flowers/Blush365_eaea9ec2-d1ea-4b9a-9503-b7d4c548c180_420x.webp",
     title: "365 Blush Roses Hatbox",
-    price: 1.900,
+    price: 1.9,
   },
   {
     id: 19,
     image:
       "/assets/flowers/NEW365Whitests_47cda495-2360-4b22-8a05-67cfef40b5ff_420x.webp",
     title: "365 White Roses Basket",
-    price: 1.900,
+    price: 1.9,
   },
   {
     id: 20,
     image:
       "/assets/flowers/White365_8540f020-e1dd-4ba7-a4c5-af2b9f47bfab_420x.webp",
     title: "365 White Roses Hatbox",
-    price: 1.900,
+    price: 1.9,
   },
   {
     id: 21,
@@ -188,28 +189,28 @@ const flowers = [
     id: 25,
     image: "/assets/flowers/EDitedTall-HB-Coraline_420x.webp",
     title: "Royale Coraline Hatbox",
-    price: 2.500,
+    price: 2.5,
   },
   {
     id: 26,
     image:
       "/assets/flowers/Arianna_6f7a7dee-db1b-46a8-9728-7e6574a19e2a_420x.webp",
     title: "Royale Arianna Hatbox",
-    price: 2.500,
+    price: 2.5,
   },
   {
     id: 27,
     image:
       "/assets/flowers/1Tall-HB-Bianca_5ce33e97-a4cb-453d-8836-78245a42f660_420x.webp",
     title: "Royale Bianca Hatbox",
-    price: 2.500,
+    price: 2.5,
   },
   {
     id: 28,
     image:
       "/assets/flowers/Tall-HB-Violet_7ead499c-20db-4764-aaa2-40536045a126_420x.webp",
     title: "Royale Violet Hatbox",
-    price: 2.500,
+    price: 2.5,
   },
   {
     id: 29,
@@ -249,24 +250,25 @@ const flowers = [
     image:
       "/assets/flowers/999WithPodium_404e5341-400f-4a3e-8733-f5991cf716d8_420x.webp",
     title: "999 Red Roses Stand",
-    price: 5.950,
+    price: 5.95,
   },
   {
     id: 35,
     image:
       "/assets/flowers/Teddy_bf4028b2-fd1c-4868-a1e3-493f446cbd14_420x.webp",
     title: "Teddy",
-    price: 8.500,
+    price: 8.5,
   },
   {
     id: 36,
     image: "/assets/flowers/NEWWWWWW_420x.webp",
     title: "Labubu",
-    price: 16.250,
+    price: 16.25,
   },
 ];
 
 const Main = () => {
+  const navigate = useNavigate();
   const formRef = useRef<HTMLDivElement>(null);
   const [cart, setCart] = useState<CartItem[]>([]);
   const [formData, setFormData] = useState<OrderForm>({
@@ -345,12 +347,13 @@ const Main = () => {
 
     setOrder(orderData);
 
-    // Here you would typically send the orderData to your server
+
     console.log("Order data:", orderData);
 
-    // Reset form and cart if needed
-    // setFormData({ fullName: "", phoneNumber: "", deliveryAddress: "", deliveryTime: "" });
-    // setCart([]);
+     setFormData({ fullName: "", phoneNumber: "", deliveryAddress: "", deliveryTime: "" });
+     setCart([]);
+
+    navigate('/payment')
   };
 
   return (
