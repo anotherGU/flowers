@@ -275,7 +275,7 @@ const Main = () => {
     deliveryAddress: "",
     deliveryTime: "",
   });
-  const [order, setOrder] = useState<OrderData | null>(null);
+  const [, setOrder] = useState<OrderData | null>(null);
 
   const scrollToForm = () => {
     if (formRef.current) {
