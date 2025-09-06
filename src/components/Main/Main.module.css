@@ -169,6 +169,19 @@
   flex: 0 1 50%;
 }
 
+.form__wrapper form input[type="datetime-local"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.form__wrapper
+  form
+  input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+  padding: 0;
+  margin: 0;
+}
+
 @media (max-width: 768px) {
   .column {
     min-width: 50%;
