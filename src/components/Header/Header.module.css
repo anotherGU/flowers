@@ -1,0 +1,51 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 7.5px 11.25px 15px 7.5px;
+  align-items: center;
+  height: 96px;
+  border-bottom: 1px solid black;
+}
+
+.logo {
+  padding: 15px 0;
+}
+
+.above {
+  background: black;
+  color: white;
+}
+
+.above__content {
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.contacts {
+  display: flex;
+  flex-direction: column;
+  gap: 22.5px;
+  padding-left: 12px;
+}
+
+.medias {
+  margin-top: 7.5px;
+  padding-top: 7.5px;
+  display: flex;
+  gap: 10px;
+}
+
+@media (max-width: 768px) {
+  header {
+    justify-content: center;
+  }
+  .contacts {
+    display: none;
+  }
+
+  .above {
+    display: none;
+  }
+}
