@@ -169,18 +169,6 @@
   flex: 0 1 50%;
 }
 
-.form__wrapper form input[type="datetime-local"] {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-}
-
-.form__wrapper
-  form
-  input[type="datetime-local"]::-webkit-calendar-picker-indicator {
-  padding: 0;
-  margin: 0;
-}
 
 @media (max-width: 768px) {
   .column {
@@ -192,5 +180,9 @@
     min-width: 100%;
     padding: 20px 20px;
     flex: 0 1 100%;
+  }
+  .form__wrapper form input[type="datetime-local"] {
+    width: 100%;
+    background-color: transparent;
   }
 }
