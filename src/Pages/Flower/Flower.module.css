@@ -1,0 +1,53 @@
+.wrapper {
+  display: flex;
+  padding: 0 120px;
+}
+
+.gallery {
+  margin-top: 50px;
+}
+
+.content__block {
+  color: black;
+  padding-left: 60px;
+}
+
+.description__block {
+  margin-top: 50px;
+  margin-bottom: 22.5px;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.price {
+  font-size: 18.75px;
+  margin-bottom: 22.5px;
+}
+
+.description {
+  font-size: 17px;
+  margin-bottom: 15px;
+  line-height: 1.5rem;
+  font-weight: 500;
+}
+
+.includes__title {
+  font-size: 17px;
+}
+
+.includes__list {
+  padding: 0 0 0 10px;
+  margin-bottom: 15px;
+}
+
+.includes__li {
+  list-style: none;
+}
+
+.approval {
+  font-size: 17px;
+}
