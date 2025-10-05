@@ -27,8 +27,6 @@ interface OrderData extends OrderForm {
   orderDate: string;
 }
 
-
-
 const Main = () => {
   const navigate = useNavigate();
   const formRef = useRef<HTMLDivElement>(null);
@@ -63,7 +61,8 @@ const Main = () => {
         return [...prevCart, { ...flower, quantity: 1 }];
       }
     });
-    scrollToForm();
+    // Скролл будет происходить только после обновления состояния
+    setTimeout(scrollToForm, 100);
   };
 
   const updateQuantity = (id: number, newQuantity: number) => {
@@ -124,6 +123,13 @@ const Main = () => {
 
   return (
     <main>
+      <h1 className={styles.title}>Anniversary Flowers</h1>
+      <p className={styles.description}>
+        Mark your special milestone with a stunning anniversary flower bouquet
+        or elegant anniversary flower arrangement, perfect for celebrating love
+        and togetherness. Flowers.ae offers same-day anniversary flower delivery
+        across all Emirates.
+      </p>
       <div className="container">
         <div className={styles.row}>
           {flowers.map((f) => (
@@ -153,110 +159,141 @@ const Main = () => {
             </div>
           ))}
         </div>
-        <div className={styles.row}>
-          <div className={styles.column__form}>
-            <div ref={formRef} className={styles.form__wrapper}>
-              <p>Recipient Information</p>
-              <p>
-                Please fill in the details below to ensure a smooth and timely
-                delivery of your bouquet.
-              </p>
-              <form onSubmit={handleSubmit}>
-                <div className={styles.input__block}>
-                  <label>Full Name</label>
-                  <input
-                    type="text"
-                    name="fullName"
-                    value={formData.fullName}
-                    onChange={handleInputChange}
-                    placeholder="Enter your full name"
-                    required
-                  />
-                </div>
-                <div className={styles.input__block}>
-                  <label>Phone Number</label>
-                  <input
-                    type="tel"
-                    name="phoneNumber"
-                    value={formData.phoneNumber}
-                    onChange={handleInputChange}
-                    placeholder="971501234567"
-                    required
-                  />
-                </div>
-                <div className={styles.input__block}>
-                  <label>Delivery Address</label>
-                  <input
-                    type="text"
-                    name="deliveryAddress"
-                    value={formData.deliveryAddress}
-                    onChange={handleInputChange}
-                    placeholder="Enter your delivery address"
-                    required
-                  />
-                </div>
-                <div className={styles.input__block}>
-                  <label>Preferred Delivery Time</label>
-                  <input
-                    type="datetime-local"
-                    name="deliveryTime"
-                    value={formData.deliveryTime}
-                    onChange={handleInputChange}
-                    required
-                  />
-                </div>
-                <button type="submit">Confirm Details</button>
-              </form>
-            </div>
-          </div>
-          <div className={styles.column__form}>
-            <div className={styles.form__wrapper}>
-              <p>Shopping Cart</p>
-              {cart.length === 0 ? (
-                <p>Your cart is empty</p>
-              ) : (
-                <>
-                  {cart.map((item) => (
-                    <div key={item.id} className={styles.cartItem}>
-                      <div className={styles.cartItemInfo}>
-                        <h4>{item.title}</h4>
-                        <p>AED {item.price.toFixed(3)}</p>
-                      </div>
-                      <div className={styles.cartItemControls}>
-                        <button
-                          onClick={() =>
-                            updateQuantity(item.id, item.quantity - 1)
-                          }
-                          className={styles.quantityBtn}
-                        >
-                          -
-                        </button>
-                        <span className={styles.quantity}>{item.quantity}</span>
-                        <button
-                          onClick={() =>
-                            updateQuantity(item.id, item.quantity + 1)
-                          }
-                          className={styles.quantityBtn}
-                        >
-                          +
-                        </button>
-                        <button
-                          onClick={() => removeFromCart(item.id)}
-                          className={styles.removeBtn}
-                        >
-                          Remove
-                        </button>
-                      </div>
-                    </div>
-                  ))}
-                  <div className={styles.cartTotal}>
-                    <h3>Total: AED {getTotalPrice().toFixed(3)}</h3>
+        <section className={styles.info__block}>
+          <h2 className={styles.info__title}>
+            Buy Anniversary Flowers in Dubai
+          </h2>
+          <p className={styles.info__description}>
+            Celebrate love and milestones with the Anniversary Flowers
+            Collection at Flowers.ae. From romantic roses to elegant lilies, our
+            collection offers a variety of arrangements perfect for marking
+            special occasions. Each bouquet is expertly designed to make your
+            anniversary unforgettable.
+          </p>
+        </section>
+        <section className={styles.info__block}>
+          <h2 className={styles.info__title}>
+            What Are the Most Popular Anniversary Flowers?
+          </h2>
+          <p className={styles.info__description}>
+            Roses, especially red and pink, are timeless choices for
+            anniversaries, but you can also explore lilies, carnations, and
+            sunflowers. Learn more in our blog on the Top 10 Anniversary Flowers
+            in Dubai.
+          </p>
+        </section>
+        <section className={styles.info__block}>
+          <h2 className={styles.info__title}>
+            Can I Get Same-Day Anniversary Flower Delivery in Dubai?
+          </h2>
+          <p className={styles.info__description}>
+           We offer free same-day delivery in Dubai, Sharjah, Abu Dhabi, Al Ain,
+            Ras Al Khaimah, Ajman, and Umm Al Quwain with a minimum order of AED
+            245. To learn more, visit our FAQ page.
+          </p>
+        </section>
+        
+        {/* Показываем блок с формой и корзиной только когда корзина не пуста */}
+        {cart.length > 0 && (
+          <div className={styles.row}>
+            <div className={styles.column__form}>
+              <div ref={formRef} className={styles.form__wrapper}>
+                <p>Recipient Information</p>
+                <p>
+                  Please fill in the details below to ensure a smooth and timely
+                  delivery of your bouquet.
+                </p>
+                <form onSubmit={handleSubmit}>
+                  <div className={styles.input__block}>
+                    <label>Full Name</label>
+                    <input
+                      type="text"
+                      name="fullName"
+                      value={formData.fullName}
+                      onChange={handleInputChange}
+                      placeholder="Enter your full name"
+                      required
+                    />
                   </div>
-                </>
-              )}
+                  <div className={styles.input__block}>
+                    <label>Phone Number</label>
+                    <input
+                      type="tel"
+                      name="phoneNumber"
+                      value={formData.phoneNumber}
+                      onChange={handleInputChange}
+                      placeholder="971501234567"
+                      required
+                    />
+                  </div>
+                  <div className={styles.input__block}>
+                    <label>Delivery Address</label>
+                    <input
+                      type="text"
+                      name="deliveryAddress"
+                      value={formData.deliveryAddress}
+                      onChange={handleInputChange}
+                      placeholder="Enter your delivery address"
+                      required
+                    />
+                  </div>
+                  <div className={styles.input__block}>
+                    <label>Preferred Delivery Time</label>
+                    <input
+                      type="datetime-local"
+                      name="deliveryTime"
+                      value={formData.deliveryTime}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
+                  <button type="submit">Confirm Details</button>
+                </form>
+              </div>
+            </div>
+            <div className={styles.column__form}>
+              <div className={styles.form__wrapper}>
+                <p>Shopping Cart</p>
+                {cart.map((item) => (
+                  <div key={item.id} className={styles.cartItem}>
+                    <div className={styles.cartItemInfo}>
+                      <h4>{item.title}</h4>
+                      <p>AED {item.price.toFixed(3)}</p>
+                    </div>
+                    <div className={styles.cartItemControls}>
+                      <button
+                        onClick={() =>
+                          updateQuantity(item.id, item.quantity - 1)
+                        }
+                        className={styles.quantityBtn}
+                      >
+                        -
+                      </button>
+                      <span className={styles.quantity}>{item.quantity}</span>
+                      <button
+                        onClick={() =>
+                          updateQuantity(item.id, item.quantity + 1)
+                        }
+                        className={styles.quantityBtn}
+                      >
+                        +
+                      </button>
+                      <button
+                        onClick={() => removeFromCart(item.id)}
+                        className={styles.removeBtn}
+                      >
+                        Remove
+                      </button>
+                    </div>
+                  </div>
+                ))}
+                <div className={styles.cartTotal}>
+                  <h3>Total: AED {getTotalPrice().toFixed(3)}</h3>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
     </main>
   );

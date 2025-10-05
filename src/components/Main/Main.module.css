@@ -1,3 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap");
+
+main {
+  padding: 0 25px;
+}
+
+.title {
+  font-family: "Jost", sans-serif;
+  font-size: 32px;
+  font-weight: 400;
+}
+
+.description {
+  font-family: "Jost", sans-serif;
+  font-size: 15px;
+}
+
 .row {
   display: flex;
   margin: 0 -20px;
@@ -9,6 +26,8 @@
   min-width: 25%;
   padding: 40px 20px;
   flex: 0 1 25%;
+  font-family: "Jost", sans-serif;
+  font-size: 15px;
 }
 
 .item__header {
@@ -18,6 +37,7 @@
 }
 
 .item__body {
+  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -169,6 +189,21 @@
   flex: 0 1 50%;
 }
 
+.info__block {
+  font-family: "Jost", sans-serif;
+  margin-bottom: 28px;
+}
+
+.info__title {
+  font-size: 24px;
+  margin-bottom: 14px;
+  font-weight: 400;
+}
+
+.info__description {
+  font-size: 15px;
+  font-weight: 400;
+}
 
 @media (max-width: 768px) {
   .column {
