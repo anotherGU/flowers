@@ -17,7 +17,7 @@ const Flower = () => {
       <div className={styles.content__block}>
         <div className={styles.description__block}>
           <h2 className={styles.title}>{flower?.title}</h2>
-          <p className={styles.price}>AED {flower?.price}00</p>
+          <p className={styles.price}>AED {flower?.price.toFixed(2)}</p>
           <p className={styles.description}>{flower?.description}</p>
           <div className={styles.includes}>
             <p className={styles.includes__title}>Gift Set options include:</p>

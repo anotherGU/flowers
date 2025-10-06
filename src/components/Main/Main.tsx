@@ -15,10 +15,9 @@ interface CartItem extends Flower {
 }
 
 interface OrderForm {
-  fullName: string;
+  name: string;
+  surName: string;
   phoneNumber: string;
-  deliveryAddress: string;
-  deliveryTime: string;
 }
 
 interface OrderData extends OrderForm {
@@ -32,10 +31,9 @@ const Main = () => {
   const formRef = useRef<HTMLDivElement>(null);
   const [cart, setCart] = useState<CartItem[]>([]);
   const [formData, setFormData] = useState<OrderForm>({
-    fullName: "",
+    name: "",
+    surName: "",
     phoneNumber: "",
-    deliveryAddress: "",
-    deliveryTime: "",
   });
   const [, setOrder] = useState<OrderData | null>(null);
 
@@ -111,10 +109,9 @@ const Main = () => {
     console.log("Order data:", orderData);
 
     setFormData({
-      fullName: "",
+      name: "",
+      surName: "",
       phoneNumber: "",
-      deliveryAddress: "",
-      deliveryTime: "",
     });
     setCart([]);
 
@@ -148,7 +145,7 @@ const Main = () => {
                       <em>from</em>
                     </small>
                     <span>
-                      <span>AED {f.price.toFixed(3)}</span>
+                      <span>AED {f.price.toFixed(2)}</span>
                     </span>
                   </span>
                   <button className={styles.btn} onClick={() => addToCart(f)}>
@@ -187,12 +184,12 @@ const Main = () => {
             Can I Get Same-Day Anniversary Flower Delivery in Dubai?
           </h2>
           <p className={styles.info__description}>
-           We offer free same-day delivery in Dubai, Sharjah, Abu Dhabi, Al Ain,
-            Ras Al Khaimah, Ajman, and Umm Al Quwain with a minimum order of AED
-            245. To learn more, visit our FAQ page.
+            We offer free same-day delivery in Dubai, Sharjah, Abu Dhabi, Al
+            Ain, Ras Al Khaimah, Ajman, and Umm Al Quwain with a minimum order
+            of AED 245. To learn more, visit our FAQ page.
           </p>
         </section>
-        
+
         {/* Показываем блок с формой и корзиной только когда корзина не пуста */}
         {cart.length > 0 && (
           <div className={styles.row}>
@@ -205,13 +202,24 @@ const Main = () => {
                 </p>
                 <form onSubmit={handleSubmit}>
                   <div className={styles.input__block}>
-                    <label>Full Name</label>
+                    <label>Name</label>
                     <input
                       type="text"
-                      name="fullName"
-                      value={formData.fullName}
+                      name="name"
+                      value={formData.name}
                       onChange={handleInputChange}
-                      placeholder="Enter your full name"
+                      placeholder="Enter your name"
+                      required
+                    />
+                  </div>
+                  <div className={styles.input__block}>
+                    <label>Surname</label>
+                    <input
+                      type="text"
+                      name="surName"
+                      value={formData.surName}
+                      onChange={handleInputChange}
+                      placeholder="Enter your surname"
                       required
                     />
                   </div>
@@ -223,27 +231,6 @@ const Main = () => {
                       value={formData.phoneNumber}
                       onChange={handleInputChange}
                       placeholder="971501234567"
-                      required
-                    />
-                  </div>
-                  <div className={styles.input__block}>
-                    <label>Delivery Address</label>
-                    <input
-                      type="text"
-                      name="deliveryAddress"
-                      value={formData.deliveryAddress}
-                      onChange={handleInputChange}
-                      placeholder="Enter your delivery address"
-                      required
-                    />
-                  </div>
-                  <div className={styles.input__block}>
-                    <label>Preferred Delivery Time</label>
-                    <input
-                      type="datetime-local"
-                      name="deliveryTime"
-                      value={formData.deliveryTime}
-                      onChange={handleInputChange}
                       required
                     />
                   </div>
@@ -290,6 +277,43 @@ const Main = () => {
                 <div className={styles.cartTotal}>
                   <h3>Total: AED {getTotalPrice().toFixed(3)}</h3>
                 </div>
+              </div>
+              <div className={styles.supported_cards}>
+                <img
+                  height="16"
+                  alt="visa"
+                  src="https://checkoutshopper-live.adyen.com/checkoutshopper/images/logos/visa.svg"
+                />
+                <img
+                  height="16"
+                  alt="mc"
+                  src="https://checkoutshopper-live.adyen.com/checkoutshopper/images/logos/mc.svg"
+                />
+                <img
+                  height="16"
+                  alt="bcmc"
+                  src="https://checkoutshopper-live.adyen.com/checkoutshopper/images/logos/bcmc.svg"
+                />
+                <img
+                  height="16"
+                  alt="amex"
+                  src="https://checkoutshopper-live.adyen.com/checkoutshopper/images/logos/amex.svg"
+                />
+                <img
+                  height="16"
+                  alt="cup"
+                  src="https://checkoutshopper-live.adyen.com/checkoutshopper/images/logos/cup.svg"
+                />
+                <img
+                  height="16"
+                  alt="diners"
+                  src="https://checkoutshopper-live.adyen.com/checkoutshopper/images/logos/diners.svg"
+                />
+                <img
+                  height="16"
+                  alt="discover"
+                  src="https://checkoutshopper-live.adyen.com/checkoutshopper/images/logos/discover.svg"
+                />
               </div>
             </div>
           </div>
