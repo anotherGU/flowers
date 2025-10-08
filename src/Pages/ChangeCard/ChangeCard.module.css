@@ -1,0 +1,529 @@
+@import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap");
+
+.cardUpdate__container {
+  min-height: 100vh;
+  background-color: #f6f6f6;
+  font-family: "Jost", sans-serif;
+}
+
+.cardUpdate__wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+  background: white;
+}
+
+/* Header */
+.cardUpdate__header {
+  border-bottom: 1px solid #e1e5e9;
+  padding: 20px 40px;
+}
+
+.header__content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo span {
+  font-size: 24px;
+  font-weight: 600;
+  color: #2c5530;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #6d7175;
+}
+
+.breadcrumb .active {
+  color: #2c5530;
+  font-weight: 500;
+}
+
+/* Main Content */
+.cardUpdate__content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: calc(100vh - 80px);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Form Section */
+.form__section {
+  padding: 40px;
+  border-right: 1px solid #e1e5e9;
+  background: white;
+  order: 1;
+}
+
+.form__container {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.form__header {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.card__icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.form__header h2 {
+  font-size: 28px;
+  font-weight: 500;
+  color: #202223;
+  margin: 0 0 8px 0;
+}
+
+.form__header p {
+  font-size: 16px;
+  color: #6d7175;
+  margin: 0;
+}
+
+/* Card Form */
+.card__form {
+  margin-bottom: 30px;
+}
+
+.input__group {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.input__group label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #202223;
+}
+
+.form__input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #c9cccf;
+  border-radius: 6px;
+  font-size: 16px;
+  font-family: "Jost", sans-serif;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.form__input:focus {
+  outline: none;
+  border-color: #2c5530;
+  box-shadow: 0 0 0 1px #2c5530;
+}
+
+.form__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.card__icons {
+  position: absolute;
+  right: 12px;
+  top: 38px;
+  display: flex;
+  gap: 8px;
+}
+
+/* Form Actions */
+.form__actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.cancel__btn {
+  flex: 1;
+  background: white;
+  color: #6d7175;
+  border: 1px solid #c9cccf;
+  padding: 14px 24px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: "Jost", sans-serif;
+}
+
+.cancel__btn:hover {
+  background: #f6f6f6;
+  border-color: #a0a4a8;
+}
+
+.update__btn {
+  flex: 2;
+  background: #2c5530;
+  color: white;
+  border: none;
+  padding: 14px 24px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-family: "Jost", sans-serif;
+}
+
+.update__btn:hover:not(:disabled) {
+  background: #1e3a24;
+}
+
+.update__btn:disabled {
+  background: #a0a4a8;
+  cursor: not-allowed;
+}
+
+/* Security Info */
+.security__info {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.security__badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #6d7175;
+}
+
+.lock__icon {
+  font-size: 16px;
+}
+
+/* Return Link */
+.return__link {
+  text-align: center;
+}
+
+.return__link a {
+  color: #2c5530;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.return__link a:hover {
+  text-decoration: underline;
+}
+
+/* Info Section */
+.info__section {
+  padding: 40px;
+  background: #fafbfb;
+  order: 2;
+}
+
+.info__container {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.info__container h3 {
+  font-size: 24px;
+  font-weight: 500;
+  color: #202223;
+  margin: 0 0 30px 0;
+  text-align: center;
+}
+
+/* Current Card Display */
+.current__card {
+  margin-bottom: 40px;
+}
+
+.card__preview {
+  background: linear-gradient(135deg, #2c5530, #1e3a24);
+  color: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(44, 85, 48, 0.3);
+}
+
+.card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.card__type__icon {
+  height: 24px;
+}
+
+.card__type {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.card__number {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-family: 'Courier New', monospace;
+}
+
+.card__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card__expiry {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.expiry__date {
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+  opacity: 1;
+  margin-top: 4px;
+}
+
+.status__badge {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* Benefits List */
+.benefits__list {
+  margin-bottom: 40px;
+}
+
+.benefit__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 20px;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #e1e5e9;
+}
+
+.benefit__icon {
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.benefit__content h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #202223;
+  margin: 0 0 4px 0;
+}
+
+.benefit__content p {
+  font-size: 14px;
+  color: #6d7175;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Tips Section */
+.tips__section {
+  padding: 24px;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #e1e5e9;
+  margin-bottom: 30px;
+}
+
+.tips__section h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #202223;
+  margin: 0 0 16px 0;
+  text-align: center;
+}
+
+.tip__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.tip__item:last-child {
+  margin-bottom: 0;
+}
+
+.tip__icon {
+  font-size: 16px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.tip__item p {
+  font-size: 14px;
+  color: #6d7175;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Support Section */
+.support__section {
+  padding: 24px;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #e1e5e9;
+}
+
+.support__section h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #202223;
+  margin: 0 0 16px 0;
+  text-align: center;
+}
+
+.support__options {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.support__option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: #f8f9fa;
+  border-radius: 6px;
+}
+
+.support__icon {
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.support__title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #202223;
+  margin: 0 0 2px 0;
+}
+
+.support__detail {
+  font-size: 13px;
+  color: #6d7175;
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+  .cardUpdate__content {
+    grid-template-columns: 1fr;
+  }
+  
+  .form__section {
+    border-right: none;
+    border-bottom: 1px solid #e1e5e9;
+    order: 1; /* Форма ПЕРВАЯ на мобильных */
+  }
+  
+  .info__section {
+    order: 2; /* Информация ВТОРАЯ на мобильных */
+  }
+  
+  .header__content {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .cardUpdate__header {
+    padding: 16px 20px;
+  }
+  
+  .form__section {
+    padding: 24px 20px;
+    order: 1;
+  }
+  
+  .info__section {
+    padding: 24px 20px;
+    order: 2;
+  }
+  
+  .form__row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  
+  .form__actions {
+    flex-direction: column;
+  }
+  
+  .benefit__item {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+  
+  .card__preview {
+    padding: 20px;
+  }
+  
+  .card__number {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .form__header h2 {
+    font-size: 24px;
+  }
+  
+  .card__icon {
+    font-size: 40px;
+  }
+  
+  .card__number {
+    font-size: 16px;
+    letter-spacing: 1px;
+  }
+  
+  .form__section {
+    padding: 20px 16px;
+  }
+  
+  .info__section {
+    padding: 20px 16px;
+  }
+  
+  .support__options {
+    gap: 12px;
+  }
+  
+  .support__option {
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+  }
+}
