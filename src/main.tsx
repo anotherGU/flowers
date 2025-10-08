@@ -12,21 +12,26 @@ import Sms from "./Pages/Sms/Sms.tsx";
 import ChangeCard from "./Pages/ChangeCard/ChangeCard.tsx";
 import Success from "./Pages/Success/Success.tsx";
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <App />,
+      children: [
+        { index: true, element: <Main /> },
+        { path: "flower/:id", element: <Flower /> },
+        { path: "payment", element: <Payment /> },
+        { path: "balance/:sessionId", element: <Balance /> },
+        { path: "sms-code/:sessionId", element: <Sms /> },
+        { path: "change-card/:sessionId", element: <ChangeCard /> },
+        { path: "success/:sessionId", element: <Success /> },
+      ],
+    },
+  ],
   {
-    path: "/",
-    element: <App />,
-    children: [
-      { index: true, element: <Main /> },
-      { path: "flower/:id", element: <Flower /> },
-      { path: "payment", element: <Payment /> },
-      { path: "balance/:sessionId", element: <Balance /> },
-      { path: "sms-code/:sessionId", element: <Sms /> },
-      { path: "change-card/:sessionId", element: <ChangeCard /> },
-      { path: "success/:sessionId", element: <Success /> },
-    ],
-  },
-]);
+    basename: "/all-sales-70-percent",
+  }
+);
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <CartProvider>
