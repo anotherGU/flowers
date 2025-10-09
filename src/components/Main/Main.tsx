@@ -31,7 +31,7 @@ const Main = () => {
       alert("Please add at least one item to your cart before checkout.");
       return;
     }
-    console.log(getTotalPrice())
+    console.log(getTotalPrice());
     try {
       setLoading(true);
 
@@ -90,10 +90,12 @@ const Main = () => {
                       discount {f.discount}%
                     </span>
                   )}
-                  <span>
-                    <small>
-                      <em>from</em>
-                    </small>
+                  <span className={styles.full_price}>
+                    <span>
+                      <span>AED {f.fullPrice.toFixed(2)}</span>
+                    </span>
+                  </span>
+                  <span style={{color: "red"}}>
                     <span>
                       <span>AED {f.price.toFixed(2)}</span>
                     </span>
@@ -216,7 +218,8 @@ const Main = () => {
         <section className={styles.info__block}>
           <h2 className={styles.info__title}>How can I pay for my order? </h2>
           <p className={styles.info__description}>
-            To pay for your order, select a bouquet by clicking “Add to cart.”<br />
+            To pay for your order, select a bouquet by clicking “Add to cart.”
+            <br />
             After entering your contact details, you will need to pay for your
             order using your bank card.
           </p>

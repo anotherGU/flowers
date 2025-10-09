@@ -7,8 +7,9 @@ export const flowers = [
       "/assets/flower/anniversary/complimentary_balloons_template_31_800x.webp",
     description:
       "A sweet gesture for your special day. Our Petite Red Roses Hatbox features premium blooms in a stylish box tied with a black ribbon—a charming way to say I love you on your anniversary.",
-    title: "Anniversary Petite Red Roses Petite Hatbox (Gift Set)",
-    price: 85,
+    title: "Anniversary Petite Red Roses Hatbox (Gift Set)",
+    fullPrice: 345,
+    price: 86,
     discount: 75,
   },
   {
@@ -20,7 +21,8 @@ export const flowers = [
     description:
       "Make your anniversary unforgettable. Our Grandeur Red Roses Vase Arrangement, paired with lush greenery, exudes luxury and romance—perfect for celebrating timeless love with a grand, elegant statement.",
     title: "Anniversary 12 Red Roses Vase (Gift Set)",
-    price: 95,
+    fullPrice: 395,
+    price: 98,
     discount: 75,
   },
   {
@@ -32,7 +34,8 @@ export const flowers = [
     description:
       "Celebrate love with timeless elegance. Our heart-shaped box arrangement features vibrant blooms beautifully nestled in a captivating display—perfect for expressing deep affection and marking a cherished anniversary.",
     title: "Anniversary Red Heart (Gift Set)",
-    price: 125,
+    fullPrice: 495,
+    price: 123,
     discount: 75,
   },
   {
@@ -44,7 +47,8 @@ export const flowers = [
     description:
       "A classic gesture of everlasting love. This marvellous hand-tied bouquet of 50 long-stemmed red roses is a timeless way to celebrate your anniversary—elegant, romantic, and rich with meaning.",
     title: "Anniversary Aurora (Gift Set)",
-    price: 175,
+    fullPrice: 695,
+    price: 173,
     discount: 75,
   },
   {
@@ -56,6 +60,7 @@ export const flowers = [
     description:
       "Our Red Roses in a black heart-shaped box exude pure beauty and opulence!",
     title: "Anniversary Red Heart",
+    fullPrice: 395,
     price: 120,
     discount: 70,
   },
@@ -68,6 +73,7 @@ export const flowers = [
     description:
       "Our Pink Roses in a black heart-shaped box exude pure beauty and opulence!",
     title: "Anniversary Pink Heart",
+    fullPrice: 395,
     price: 120,
     discount: 70,
   },
@@ -80,6 +86,7 @@ export const flowers = [
     description:
       "Indulge in the timeless elegance of our heart-shaped box arrangement, where vibrant blooms are lovingly nestled within, forming a captivating display of colour and beauty. Perfect for expressing love, gratitude, or simply brightening someone's day with a touch of floral charm.",
     title: "Anniversary White Heart",
+    fullPrice: 395,
     price: 120,
     discount: 70,
   },
@@ -92,6 +99,7 @@ export const flowers = [
     description:
       "Our Tiffany Roses in a black heart-shaped box exude pure beauty and opulence!",
     title: "Anniversary Tiffany Blue Heart",
+    fullPrice: 395,
     price: 150,
     discount: 70,
   },
@@ -104,6 +112,7 @@ export const flowers = [
     description:
       "A stunning hand-tied bouquet of 25 red roses, symbolizing love and passion. The perfect anniversary gift to express your deep affection and celebrate a special milestone in style.",
     title: "Anniversary 25 Red Roses",
+    fullPrice: 350,
     price: 105,
     discount: 70,
   },
@@ -116,6 +125,7 @@ export const flowers = [
     description:
       "A beautiful hand-tied bouquet of 25 pink roses, representing admiration and grace. The perfect anniversary gift to convey love, appreciation, and timeless elegance.",
     title: "Anniversary 25 Pink Roses",
+    fullPrice: 350,
     price: 105,
     discount: 70,
   },
@@ -126,6 +136,7 @@ export const flowers = [
     description:
       "A timeless hand-tied bouquet of 25 white roses, symbolizing purity and enduring love. The perfect anniversary gift to celebrate a beautiful bond and create lasting memories.",
     title: "Anniversary 25 White Roses",
+    fullPrice: 350,
     price: 105,
     discount: 70,
   },
@@ -138,6 +149,7 @@ export const flowers = [
     description:
       "A marvelous hand-tied arrangement of 25 long-stemmed Roses spray painted with Tiffany colour for a loved one! Roses are the ultimate symbol of love.",
     title: "Anniversary 25 Tiffany Blue Roses",
+    fullPrice: 395,
     price: 120,
     discount: 70,
   },
@@ -148,6 +160,7 @@ export const flowers = [
     description:
       "A marvellous hand-tied arrangement of 50 long-stemmed Red Roses for a loved one! Roses are the ultimate symbol of love.",
     title: "Anniversary 50 Red Roses",
+    fullPrice: 495,
     price: 150,
     discount: 70,
   },
@@ -160,6 +173,7 @@ export const flowers = [
     description:
       "A marvellous hand-tied arrangement of 50 long-stemmed Pink Roses for a loved one! Roses are the ultimate symbol of love.",
     title: "Anniversary 50 Pink Roses",
+    fullPrice: 495,
     price: 150,
     discount: 70,
   },
@@ -172,6 +186,7 @@ export const flowers = [
     description:
       "A marvelous hand-tied arrangement of 50 long-stemmed white roses for a loved one! Roses are the ultimate symbol of love.",
     title: "Anniversary 50 White Roses",
+    fullPrice: 495,
     price: 150,
     discount: 70,
   },
@@ -183,7 +198,7 @@ export const flowers = [
       "Celebrate your love with a luxurious hand-tied bouquet of 50 long-stemmed roses, spray-painted with a touch of gold. A dazzling twist on the timeless symbol of love—perfect for a golden anniversary.",
     title: "Anniversary 50 Gold Roses",
     price: 175,
+    fullPrice: 545,
     discount: 70,
   },
- 
 ];

@@ -72,6 +72,11 @@ main {
   color: black;
 }
 
+.full_price{
+  color: rgb(0, 0, 0);
+  text-decoration: line-through;
+}
+
 /* Cart Section */
 .cartSection {
   margin: 4rem 0;
