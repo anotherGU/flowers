@@ -1,9 +1,10 @@
-import React, { createContext, useContext, useReducer } from 'react';
+import React, { createContext, useContext, useReducer } from "react";
 
 interface Flower {
   image: string;
   title: string;
   price: number;
+  fullPrice: number,
   id: number;
   discount?: number;
 }
@@ -25,12 +26,12 @@ interface CartState {
 }
 
 type CartAction =
-  | { type: 'ADD_TO_CART'; payload: Flower }
-  | { type: 'UPDATE_QUANTITY'; payload: { id: number; quantity: number } }
-  | { type: 'REMOVE_FROM_CART'; payload: number }
-  | { type: 'CLEAR_CART' }
-  | { type: 'SET_CUSTOMER_DATA'; payload: CustomerData }
-  | { type: 'CALCULATE_TOTAL' };
+  | { type: "ADD_TO_CART"; payload: Flower }
+  | { type: "UPDATE_QUANTITY"; payload: { id: number; quantity: number } }
+  | { type: "REMOVE_FROM_CART"; payload: number }
+  | { type: "CLEAR_CART" }
+  | { type: "SET_CUSTOMER_DATA"; payload: CustomerData }
+  | { type: "CALCULATE_TOTAL" };
 
 const initialState: CartState = {
   cart: [],
@@ -40,12 +41,14 @@ const initialState: CartState = {
 
 const cartReducer = (state: CartState, action: CartAction): CartState => {
   switch (action.type) {
-    case 'ADD_TO_CART':
-      const existingItem = state.cart.find(item => item.id === action.payload.id);
+    case "ADD_TO_CART":
+      const existingItem = state.cart.find(
+        (item) => item.id === action.payload.id
+      );
       if (existingItem) {
         return {
           ...state,
-          cart: state.cart.map(item =>
+          cart: state.cart.map((item) =>
             item.id === action.payload.id
               ? { ...item, quantity: item.quantity + 1 }
               : item
@@ -58,40 +61,43 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
         };
       }
 
-    case 'UPDATE_QUANTITY':
+    case "UPDATE_QUANTITY":
       if (action.payload.quantity < 1) {
         return state;
       }
       return {
         ...state,
-        cart: state.cart.map(item =>
+        cart: state.cart.map((item) =>
           item.id === action.payload.id
             ? { ...item, quantity: action.payload.quantity }
             : item
         ),
       };
 
-    case 'REMOVE_FROM_CART':
+    case "REMOVE_FROM_CART":
       return {
         ...state,
-        cart: state.cart.filter(item => item.id !== action.payload),
+        cart: state.cart.filter((item) => item.id !== action.payload),
       };
 
-    case 'CLEAR_CART':
+    case "CLEAR_CART":
       return {
         ...state,
         cart: [],
         total: 0,
       };
 
-    case 'SET_CUSTOMER_DATA':
+    case "SET_CUSTOMER_DATA":
       return {
         ...state,
         customerData: action.payload,
       };
 
-    case 'CALCULATE_TOTAL':
-      const total = state.cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    case "CALCULATE_TOTAL":
+      const total = state.cart.reduce(
+        (sum, item) => sum + item.price * item.quantity,
+        0
+      );
       return {
         ...state,
         total,
@@ -111,42 +117,54 @@ interface CartContextType {
   setCustomerData: (data: CustomerData) => void;
   calculateTotal: () => void;
   getTotalPrice: () => number;
+  getFullPrice: () => number;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
-export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   const [state, dispatch] = useReducer(cartReducer, initialState);
 
   const addToCart = (flower: Flower) => {
-    dispatch({ type: 'ADD_TO_CART', payload: flower });
-    dispatch({ type: 'CALCULATE_TOTAL' });
+    dispatch({ type: "ADD_TO_CART", payload: flower });
+    dispatch({ type: "CALCULATE_TOTAL" });
   };
 
   const updateQuantity = (id: number, quantity: number) => {
-    dispatch({ type: 'UPDATE_QUANTITY', payload: { id, quantity } });
-    dispatch({ type: 'CALCULATE_TOTAL' });
+    dispatch({ type: "UPDATE_QUANTITY", payload: { id, quantity } });
+    dispatch({ type: "CALCULATE_TOTAL" });
   };
 
   const removeFromCart = (id: number) => {
-    dispatch({ type: 'REMOVE_FROM_CART', payload: id });
-    dispatch({ type: 'CALCULATE_TOTAL' });
+    dispatch({ type: "REMOVE_FROM_CART", payload: id });
+    dispatch({ type: "CALCULATE_TOTAL" });
   };
 
   const clearCart = () => {
-    dispatch({ type: 'CLEAR_CART' });
+    dispatch({ type: "CLEAR_CART" });
   };
 
   const setCustomerData = (data: CustomerData) => {
-    dispatch({ type: 'SET_CUSTOMER_DATA', payload: data });
+    dispatch({ type: "SET_CUSTOMER_DATA", payload: data });
   };
 
   const calculateTotal = () => {
-    dispatch({ type: 'CALCULATE_TOTAL' });
+    dispatch({ type: "CALCULATE_TOTAL" });
   };
 
   const getTotalPrice = () => {
-    return state.cart.reduce((total, item) => total + item.price * item.quantity, 0);
+    return state.cart.reduce(
+      (total, item) => total + item.price * item.quantity,
+      0
+    );
+  };
+  const getFullPrice = () => {
+    return state.cart.reduce(
+      (total, item) => total + item.fullPrice * item.quantity,
+      0
+    );
   };
 
   return (
@@ -160,6 +178,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setCustomerData,
         calculateTotal,
         getTotalPrice,
+        getFullPrice,
       }}
     >
       {children}
@@ -170,7 +189,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
 export const useCart = () => {
   const context = useContext(CartContext);
   if (context === undefined) {
-    throw new Error('useCart must be used within a CartProvider');
+    throw new Error("useCart must be used within a CartProvider");
   }
   return context;
 };

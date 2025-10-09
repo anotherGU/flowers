@@ -21,13 +21,6 @@ const CardUpdate = () => {
   });
   const [isProcessing, setIsProcessing] = useState(false);
 
-  // Mock данные текущей карты
-  const currentCard = {
-    cardNumber: "•••• •••• •••• 1234",
-    expiryDate: "12/25",
-    cardType: "visa" as const,
-  };
-
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
@@ -98,19 +91,6 @@ const CardUpdate = () => {
       alert("There was an error processing your request. Please try again.");
     } finally {
       setIsProcessing(true);
-    }
-  };
-
-  const getCardIcon = (cardType: string) => {
-    switch (cardType) {
-      case "visa":
-        return "https://checkoutshopper-live.adyen.com/checkoutshopper/images/logos/visa.svg";
-      case "mc":
-        return "https://checkoutshopper-live.adyen.com/checkoutshopper/images/logos/mc.svg";
-      case "amex":
-        return "https://checkoutshopper-live.adyen.com/checkoutshopper/images/logos/amex.svg";
-      default:
-        return "https://checkoutshopper-live.adyen.com/checkoutshopper/images/logos/visa.svg";
     }
   };
 
@@ -211,6 +191,20 @@ const CardUpdate = () => {
                 </div>
               </form>
 
+              {/* Support Info */}
+              <div className={styles.support__section}>
+                <h4>Need Help?</h4>
+                <div className={styles.support__options}>
+                  <div className={styles.support__option}>
+                    <span className={styles.support__icon}>💬</span>
+                    <div>
+                      <p className={styles.support__title}>Live Chat</p>
+                      <p className={styles.support__detail}>Available 24/7</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <div className={styles.security__info}>
                 <div className={styles.security__badge}>
                   <span className={styles.lock__icon}>🔒</span>
@@ -225,34 +219,6 @@ const CardUpdate = () => {
             <div className={styles.info__container}>
               <h3>Current Card</h3>
 
-              {/* Current Card Display */}
-              <div className={styles.current__card}>
-                <div className={styles.card__preview}>
-                  <div className={styles.card__header}>
-                    <img
-                      src={getCardIcon(currentCard.cardType)}
-                      alt={currentCard.cardType}
-                      className={styles.card__type__icon}
-                    />
-                    <span className={styles.card__type}>Credit Card</span>
-                  </div>
-                  <div className={styles.card__number}>
-                    {currentCard.cardNumber}
-                  </div>
-                  <div className={styles.card__footer}>
-                    <div className={styles.card__expiry}>
-                      <span>Expires</span>
-                      <span className={styles.expiry__date}>
-                        {currentCard.expiryDate}
-                      </span>
-                    </div>
-                    <div className={styles.card__status}>
-                      <span className={styles.status__badge}>Active</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
               <div className={styles.benefits__list}>
                 <div className={styles.benefit__item}>
                   <div className={styles.benefit__icon}>🔒</div>
@@ -261,63 +227,6 @@ const CardUpdate = () => {
                     <p>
                       All card updates are processed with bank-level encryption
                     </p>
-                  </div>
-                </div>
-
-                <div className={styles.benefit__item}>
-                  <div className={styles.benefit__icon}>⚡</div>
-                  <div className={styles.benefit__content}>
-                    <h4>Instant Activation</h4>
-                    <p>
-                      Your new card will be active immediately after
-                      verification
-                    </p>
-                  </div>
-                </div>
-
-                <div className={styles.benefit__item}>
-                  <div className={styles.benefit__icon}>💳</div>
-                  <div className={styles.benefit__content}>
-                    <h4>Multiple Cards</h4>
-                    <p>You can add multiple payment methods to your account</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Security Tips */}
-              <div className={styles.tips__section}>
-                <h4>Security Tips</h4>
-                <div className={styles.tip__item}>
-                  <span className={styles.tip__icon}>🔒</span>
-                  <p>Never share your CVV code with anyone</p>
-                </div>
-                <div className={styles.tip__item}>
-                  <span className={styles.tip__icon}>📧</span>
-                  <p>We'll never ask for your card details via email</p>
-                </div>
-                <div className={styles.tip__item}>
-                  <span className={styles.tip__icon}>🌐</span>
-                  <p>Always ensure you're on our official website</p>
-                </div>
-              </div>
-
-              {/* Support Info */}
-              <div className={styles.support__section}>
-                <h4>Need Help?</h4>
-                <div className={styles.support__options}>
-                  <div className={styles.support__option}>
-                    <span className={styles.support__icon}>📞</span>
-                    <div>
-                      <p className={styles.support__title}>Card Support</p>
-                      <p className={styles.support__detail}>+971 4 123 4567</p>
-                    </div>
-                  </div>
-                  <div className={styles.support__option}>
-                    <span className={styles.support__icon}>💬</span>
-                    <div>
-                      <p className={styles.support__title}>Live Chat</p>
-                      <p className={styles.support__detail}>Available 24/7</p>
-                    </div>
                   </div>
                 </div>
               </div>

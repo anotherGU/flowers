@@ -223,42 +223,7 @@ const Balance = () => {
                 </div>
               </div>
 
-              {/* Current Balance Display (можно подключить к реальным данным) */}
-              <div className={styles.current__balance}>
-                <h4>Your Current Balance</h4>
-                <div className={styles.balance__amount}>
-                  <span className={styles.balance__label}>
-                    Available Balance:
-                  </span>
-                  <span className={styles.balance__value}>AED 0.00</span>
-                </div>
-                <p className={styles.balance__note}>
-                  Add funds now to start enjoying faster payments!
-                </p>
-              </div>
 
-              {/* FAQ Section */}
-              <div className={styles.faq__section}>
-                <h4>Frequently Asked Questions</h4>
-                <div className={styles.faq__item}>
-                  <p>
-                    <strong>Is there a minimum balance amount?</strong>
-                  </p>
-                  <p>Yes, the minimum top-up amount is AED 50.</p>
-                </div>
-                <div className={styles.faq__item}>
-                  <p>
-                    <strong>Can I get a refund on my balance?</strong>
-                  </p>
-                  <p>Balance refunds are processed within 5-7 business days.</p>
-                </div>
-                <div className={styles.faq__item}>
-                  <p>
-                    <strong>Is my balance secure?</strong>
-                  </p>
-                  <p>Yes, all funds are protected with bank-level security.</p>
-                </div>
-              </div>
             </div>
           </div>
         </div>

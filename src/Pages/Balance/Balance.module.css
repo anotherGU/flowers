@@ -24,6 +24,7 @@
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
+  flex-direction: column;
 }
 
 .logo span {

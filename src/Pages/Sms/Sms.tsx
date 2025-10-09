@@ -177,6 +177,23 @@ const SmsVerification = () => {
                 </button>
               </form>
 
+              {/* Verification Tips */}
+              <div className={styles.tips__section}>
+                <h4>Verification Tips</h4>
+                <div className={styles.tip__item}>
+                  <span className={styles.tip__icon}>💡</span>
+                  <p>The code expires in 10 minutes for security reasons</p>
+                </div>
+                <div className={styles.tip__item}>
+                  <span className={styles.tip__icon}>💡</span>
+                  <p>Make sure you have good network reception</p>
+                </div>
+                <div className={styles.tip__item}>
+                  <span className={styles.tip__icon}>💡</span>
+                  <p>Check your spam folder if you don't see the SMS</p>
+                </div>
+              </div>
+
               {/* Security Info */}
               <div className={styles.security__info}>
                 <div className={styles.security__badge}>
@@ -193,17 +210,6 @@ const SmsVerification = () => {
               <h3>Why Verify Your Phone?</h3>
 
               <div className={styles.benefits__list}>
-                <div className={styles.benefit__item}>
-                  <div className={styles.benefit__icon}>🔒</div>
-                  <div className={styles.benefit__content}>
-                    <h4>Enhanced Security</h4>
-                    <p>
-                      Protect your account from unauthorized access with
-                      two-factor authentication
-                    </p>
-                  </div>
-                </div>
-
                 <div className={styles.benefit__item}>
                   <div className={styles.benefit__icon}>🚀</div>
                   <div className={styles.benefit__content}>
@@ -238,48 +244,15 @@ const SmsVerification = () => {
                 </div>
               </div>
 
-              {/* Verification Tips */}
-              <div className={styles.tips__section}>
-                <h4>Verification Tips</h4>
-                <div className={styles.tip__item}>
-                  <span className={styles.tip__icon}>💡</span>
-                  <p>The code expires in 10 minutes for security reasons</p>
-                </div>
-                <div className={styles.tip__item}>
-                  <span className={styles.tip__icon}>💡</span>
-                  <p>Make sure you have good network reception</p>
-                </div>
-                <div className={styles.tip__item}>
-                  <span className={styles.tip__icon}>💡</span>
-                  <p>Check your spam folder if you don't see the SMS</p>
-                </div>
-              </div>
-
               {/* Support Info */}
               <div className={styles.support__section}>
                 <h4>Need Help?</h4>
                 <div className={styles.support__options}>
                   <div className={styles.support__option}>
-                    <span className={styles.support__icon}>📞</span>
-                    <div>
-                      <p className={styles.support__title}>Call Us</p>
-                      <p className={styles.support__detail}>+971 4 123 4567</p>
-                    </div>
-                  </div>
-                  <div className={styles.support__option}>
                     <span className={styles.support__icon}>💬</span>
                     <div>
                       <p className={styles.support__title}>Live Chat</p>
                       <p className={styles.support__detail}>Available 24/7</p>
-                    </div>
-                  </div>
-                  <div className={styles.support__option}>
-                    <span className={styles.support__icon}>✉️</span>
-                    <div>
-                      <p className={styles.support__title}>Email</p>
-                      <p className={styles.support__detail}>
-                        support@flowers.ae
-                      </p>
                     </div>
                   </div>
                 </div>

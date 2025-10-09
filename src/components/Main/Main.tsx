@@ -9,8 +9,13 @@ const Main = () => {
   const navigate = useNavigate();
   const [isLoading, setLoading] = useState<boolean>(false);
   const formRef = useRef<HTMLDivElement>(null);
-  const { state, addToCart, updateQuantity, removeFromCart, getTotalPrice } =
-    useCart();
+  const {
+    state,
+    addToCart,
+    updateQuantity,
+    removeFromCart,
+    getTotalPrice,
+  } = useCart();
 
   const scrollToForm = () => {
     if (formRef.current) {
@@ -95,7 +100,7 @@ const Main = () => {
                       <span>AED {f.fullPrice.toFixed(2)}</span>
                     </span>
                   </span>
-                  <span style={{color: "red"}}>
+                  <span style={{ color: "red" }}>
                     <span>
                       <span>AED {f.price.toFixed(2)}</span>
                     </span>

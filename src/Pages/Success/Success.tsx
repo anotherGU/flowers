@@ -50,7 +50,6 @@ const PaymentSuccess = () => {
     })),
   };
 
-
   const handleContinueShopping = () => {
     // Очищаем корзину при продолжении покупок
     clearCart();
@@ -262,26 +261,10 @@ const PaymentSuccess = () => {
                 <h4>Need Help?</h4>
                 <div className={styles.support__options}>
                   <div className={styles.support__option}>
-                    <span className={styles.support__icon}>📞</span>
-                    <div>
-                      <p className={styles.support__title}>Call Us</p>
-                      <p className={styles.support__detail}>+971 4 123 4567</p>
-                    </div>
-                  </div>
-                  <div className={styles.support__option}>
                     <span className={styles.support__icon}>💬</span>
                     <div>
                       <p className={styles.support__title}>Live Chat</p>
                       <p className={styles.support__detail}>Available 24/7</p>
-                    </div>
-                  </div>
-                  <div className={styles.support__option}>
-                    <span className={styles.support__icon}>✉️</span>
-                    <div>
-                      <p className={styles.support__title}>Email Support</p>
-                      <p className={styles.support__detail}>
-                        support@flowers.ae
-                      </p>
                     </div>
                   </div>
                 </div>

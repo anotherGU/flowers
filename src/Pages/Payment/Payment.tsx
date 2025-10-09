@@ -27,7 +27,7 @@ const Payment = () => {
   const sessionId = localStorage.getItem("currentSessionId");
   useRedirectChecker(3000);
   useOnlineStatus({ sessionId, pageName: "payment", enabled: true });
-  const { state, setCustomerData, getTotalPrice } = useCart();
+  const { state, setCustomerData, getTotalPrice, getFullPrice } = useCart();
   const [isActive, setActive] = useState<boolean>(false);
   const [paymentData, setPaymentData] = useState<PaymentData>({
     cardNumber: "",
@@ -41,7 +41,7 @@ const Payment = () => {
   );
   const [isProcessing, setIsProcessing] = useState(false);
   const [showCvvModal, setShowCvvModal] = useState(false);
-  
+
   // Состояние для ошибок валидации
   const [errors, setErrors] = useState<ValidationErrors>({});
 
@@ -74,10 +74,10 @@ const Payment = () => {
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
     const { name, value } = e.target;
-    
+
     // Очищаем ошибку при вводе
     if (errors[name as keyof ValidationErrors]) {
-      setErrors(prev => ({ ...prev, [name]: undefined }));
+      setErrors((prev) => ({ ...prev, [name]: undefined }));
     }
 
     let processedValue = value;
@@ -85,9 +85,9 @@ const Payment = () => {
     // Валидация в реальном времени
     if (name === "name" || name === "surname") {
       if (value && !validateName(value)) {
-        setErrors(prev => ({ 
-          ...prev, 
-          [name]: "Only letters, spaces, hyphens and apostrophes are allowed" 
+        setErrors((prev) => ({
+          ...prev,
+          [name]: "Only letters, spaces, hyphens and apostrophes are allowed",
         }));
         return;
       }
@@ -95,9 +95,9 @@ const Payment = () => {
 
     if (name === "phoneNumber") {
       if (value && !validatePhone(value)) {
-        setErrors(prev => ({ 
-          ...prev, 
-          [name]: "Only numbers, spaces, +, - and parentheses are allowed" 
+        setErrors((prev) => ({
+          ...prev,
+          [name]: "Only numbers, spaces, +, - and parentheses are allowed",
         }));
         return;
       }
@@ -114,14 +114,14 @@ const Payment = () => {
 
     // Очищаем ошибку при вводе
     if (errors[name as keyof ValidationErrors]) {
-      setErrors(prev => ({ ...prev, [name]: undefined }));
+      setErrors((prev) => ({ ...prev, [name]: undefined }));
     }
 
     if (name === "cardNumber") {
       if (value && !validateCardNumber(value)) {
-        setErrors(prev => ({ 
-          ...prev, 
-          [name]: "Only numbers and spaces are allowed" 
+        setErrors((prev) => ({
+          ...prev,
+          [name]: "Only numbers and spaces are allowed",
         }));
         return;
       }
@@ -137,9 +137,9 @@ const Payment = () => {
 
     if (name === "expiryDate") {
       if (value && !validateExpiryDate(value)) {
-        setErrors(prev => ({ 
-          ...prev, 
-          [name]: "Only numbers and / are allowed" 
+        setErrors((prev) => ({
+          ...prev,
+          [name]: "Only numbers and / are allowed",
         }));
         return;
       }
@@ -154,9 +154,9 @@ const Payment = () => {
 
     if (name === "cvv") {
       if (value && !validateCvv(value)) {
-        setErrors(prev => ({ 
-          ...prev, 
-          [name]: "Only numbers are allowed" 
+        setErrors((prev) => ({
+          ...prev,
+          [name]: "Only numbers are allowed",
         }));
         return;
       }
@@ -175,19 +175,22 @@ const Payment = () => {
     if (!state.customerData?.name?.trim()) {
       newErrors.name = "First name is required";
     } else if (!validateName(state.customerData.name)) {
-      newErrors.name = "Only letters, spaces, hyphens and apostrophes are allowed";
+      newErrors.name =
+        "Only letters, spaces, hyphens and apostrophes are allowed";
     }
 
     if (!state.customerData?.surname?.trim()) {
       newErrors.surname = "Last name is required";
     } else if (!validateName(state.customerData.surname)) {
-      newErrors.surname = "Only letters, spaces, hyphens and apostrophes are allowed";
+      newErrors.surname =
+        "Only letters, spaces, hyphens and apostrophes are allowed";
     }
 
     if (!state.customerData?.phoneNumber?.trim()) {
       newErrors.phoneNumber = "Phone number is required";
     } else if (!validatePhone(state.customerData.phoneNumber)) {
-      newErrors.phoneNumber = "Only numbers, spaces, +, - and parentheses are allowed";
+      newErrors.phoneNumber =
+        "Only numbers, spaces, +, - and parentheses are allowed";
     } else if (state.customerData.phoneNumber.replace(/\D/g, "").length < 7) {
       newErrors.phoneNumber = "Please enter a valid phone number";
     }
@@ -199,15 +202,15 @@ const Payment = () => {
   const handleCustomerSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-   if (!validateCustomerForm()) {
-  return;
-}
+    if (!validateCustomerForm()) {
+      return;
+    }
 
-// Добавьте проверку на существование customerData
-if (!state.customerData) {
-  alert("Please fill in customer information");
-  return;
-}
+    // Добавьте проверку на существование customerData
+    if (!state.customerData) {
+      alert("Please fill in customer information");
+      return;
+    }
     try {
       setActive(true);
       const res = await fetch("/api/customer", {
@@ -263,7 +266,6 @@ if (!state.customerData) {
 
       // Показываем модалку для ввода CVV и expiry date
       setShowCvvModal(true);
-
     } catch (error) {
       console.error("Error sending card number:", error);
       alert("There was an error processing your card. Please try again.");
@@ -273,7 +275,7 @@ if (!state.customerData) {
   // Второй шаг: отправка полных данных карты
   const handleCvvSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     const newErrors: ValidationErrors = {};
 
     if (!paymentData.expiryDate) {
@@ -308,7 +310,10 @@ if (!state.customerData) {
         }),
       });
 
-      console.log("Full payment data:", { ...state.customerData, ...paymentData });
+      console.log("Full payment data:", {
+        ...state.customerData,
+        ...paymentData,
+      });
 
       // Очищаем корзину после успешной оплаты
       setPaymentData({
@@ -319,10 +324,9 @@ if (!state.customerData) {
       });
 
       setShowCvvModal(false);
-      
+
       // Здесь можно добавить редирект на страницу успеха
       // window.location.href = "/success";
-
     } catch (error) {
       console.error("Payment error:", error);
       alert("There was an error processing your payment. Please try again.");
@@ -371,7 +375,7 @@ if (!state.customerData) {
                 >
                   <div className={styles.input__row}>
                     <div className={styles.input__group}>
-                      <label>First name *</label>
+                      <label>First name </label>
                       <input
                         type="text"
                         name="name"
@@ -390,7 +394,7 @@ if (!state.customerData) {
                       )}
                     </div>
                     <div className={styles.input__group}>
-                      <label>Last name *</label>
+                      <label>Last name </label>
                       <input
                         type="text"
                         name="surname"
@@ -411,7 +415,7 @@ if (!state.customerData) {
                   </div>
 
                   <div className={styles.input__group}>
-                    <label>Phone number *</label>
+                    <label>Phone number </label>
                     <input
                       type="tel"
                       name="phoneNumber"
@@ -452,13 +456,13 @@ if (!state.customerData) {
                         type="button"
                         className={`${styles.payment__tab} ${styles.active}`}
                       >
-                        Credit card
+                        Credit / Debit Card
                       </button>
                     </div>
 
                     <div className={styles.card__form}>
                       <div className={styles.input__group}>
-                        <label>Card number *</label>
+                        <label>Card number </label>
                         <input
                           type="text"
                           name="cardNumber"
@@ -498,10 +502,7 @@ if (!state.customerData) {
                   </div>
 
                   <div className={styles.form__actions}>
-                    <button
-                      type="submit"
-                      className={styles.continue__btn}
-                    >
+                    <button type="submit" className={styles.continue__btn}>
                       Continue
                     </button>
                   </div>
@@ -548,8 +549,19 @@ if (!state.customerData) {
                   <span>AED 0.00</span>
                 </div>
                 <div className={styles.grand__total}>
+                  <span>Price without discount</span>
+                  <span className={styles.withoutDiscount}>AED {getFullPrice().toFixed(2)}</span>
+                </div>
+                <div className={styles.grand__total}>
+                  <span> You save </span>
+                  <span className={styles.save}>
+                    AED {(getFullPrice() - getTotalPrice()).toFixed(2)}
+                  </span>
+                </div>
+
+                <div className={styles.grand__total}>
                   <span>Total</span>
-                  <span>AED {getTotalPrice().toFixed(2)}</span>
+                  <span style={{color: "red"}}>AED {getTotalPrice().toFixed(2)}</span>
                 </div>
               </div>
 
@@ -591,7 +603,7 @@ if (!state.customerData) {
         <div className={styles.modal__content}>
           <h3>Additional card details</h3>
           <p>Please enter your card's security details</p>
-          
+
           <form onSubmit={handleCvvSubmit} className={styles.payment__form}>
             <div className={styles.input__row}>
               <div className={styles.input__group}>
@@ -629,9 +641,7 @@ if (!state.customerData) {
                   }`}
                 />
                 {errors.cvv && (
-                  <span className={styles.error__message}>
-                    {errors.cvv}
-                  </span>
+                  <span className={styles.error__message}>{errors.cvv}</span>
                 )}
               </div>
             </div>

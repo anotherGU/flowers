@@ -293,7 +293,7 @@ main {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .column {
+   .column {
     min-width: 50%;
     padding: 25px 20px;
     flex: 1 1 50%;
@@ -301,33 +301,67 @@ main {
   
   .cartContainer {
     grid-template-columns: 1fr;
+    gap: 1rem;
   }
   
   .cartItem {
-    flex-direction: column;
-    text-align: center;
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    grid-template-rows: auto auto;
     gap: 0.5rem;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid #eaeaea;
   }
   
-  .cartItemControls {
-    justify-content: center;
+  .cartItemImage {
+    grid-column: 1;
+    grid-row: 1 / span 2;
   }
   
   .cartItemImage img {
-    width: 100px;
-    height: 100px;
-  }
-}
-
-@media (max-width: 480px) {
-  main {
-    padding: 0 15px;
+    width: 80px;
+    height: 80px;
   }
   
-  .column {
-    min-width: 100%;
-    padding: 20px 10px;
-    flex: 1 1 100%;
+  .cartItemDetails {
+    grid-column: 2;
+    grid-row: 1;
+    padding-left: 0.5rem;
+  }
+  
+  .cartItemTitle {
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .cartItemPrice {
+    font-size: 0.9rem;
+    margin-bottom: 0;
+  }
+  
+  .cartItemControls {
+    grid-column: 2 / span 2;
+    grid-row: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+  
+  .quantityControls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .cartItemTotal {
+    grid-column: 3;
+    grid-row: 1;
+    font-size: 1rem;
+    text-align: right;
+    padding-right: 0.5rem;
   }
   
   .cartItems,
@@ -337,5 +371,59 @@ main {
   
   .cartTitle {
     font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  main {
+    padding: 0 15px;
+  }
+  
+  .column {
+    min-width: 50%;
+    padding: 20px 10px;
+    flex: 1 1 50%;
+  }
+  
+  .cartItem {
+    grid-template-columns: 70px 1fr auto;
+    gap: 0.4rem;
+  }
+  
+  .cartItemImage img {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .cartItemTitle {
+    font-size: 0.9rem;
+  }
+  
+  .cartItemPrice {
+    font-size: 0.85rem;
+  }
+  
+  .cartItemTotal {
+    font-size: 0.9rem;
+  }
+  
+  .quantityBtn {
+    width: 28px;
+    height: 28px;
+    font-size: 0.8rem;
+  }
+  
+  .removeBtn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+  }
+  
+  .cartItems,
+  .cartSummary {
+    padding: 0.8rem;
+  }
+  
+  .cartTitle {
+    font-size: 1.3rem;
   }
 }
