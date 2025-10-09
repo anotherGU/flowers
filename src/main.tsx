@@ -27,10 +27,7 @@ const router = createBrowserRouter(
         { path: "success/:sessionId", element: <Success /> },
       ],
     },
-  ],
-  {
-    basename: "/all-sales-70-percent",
-  }
+  ]
 );
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
