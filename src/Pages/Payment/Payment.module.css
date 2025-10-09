@@ -17,7 +17,6 @@
   border-bottom: 1px solid #e1e5e9;
   padding: 20px 40px;
   display: flex;
-
 }
 
 .header__content {
@@ -133,7 +132,6 @@
   cursor: pointer;
   transition: background-color 0.2s ease;
   font-family: "Jost", sans-serif;
-
 }
 
 .continue__btn:hover,
@@ -153,7 +151,7 @@
   cursor: pointer;
   font-size: 14px;
   font-family: "Jost", sans-serif;
-  padding: 0;;
+  padding: 0;
 }
 
 .back__btn:hover {
@@ -368,6 +366,95 @@
 
 .change__btn:hover {
   text-decoration: underline;
+}
+
+.modal__content {
+  padding: 24px;
+  border-radius: 12px;
+  background-color: white;
+  min-width: 400px;
+  max-width: 90vw;
+}
+
+.modal__content h3 {
+  margin: 0 0 8px 0;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.modal__content p {
+  margin: 0 0 20px 0;
+  color: #666;
+  font-size: 14px;
+}
+
+.cancel__btn {
+  padding: 12px 24px;
+  background-color: #f5f5f5;
+  color: #333;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-right: 12px;
+}
+
+.cancel__btn:hover {
+  background-color: #e9e9e9;
+}
+
+.input__error {
+  border-color: #d72c0d !important;
+  box-shadow: 0 0 0 1px #d72c0d !important;
+}
+
+.error__message {
+  display: block;
+  color: #d72c0d;
+  font-size: 12px;
+  margin-top: 4px;
+  font-weight: 400;
+}
+
+.input__group {
+  position: relative;
+}
+
+/* Анимация для плавного появления ошибок */
+.error__message {
+  animation: fadeIn 0.2s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Дополнительные стили для улучшения UX */
+.form__input:invalid {
+  border-color: #c9cccf;
+}
+
+.form__input:invalid:focus {
+  border-color: #000000;
+  box-shadow: 0 0 0 1px #000000;
+}
+
+/* Стили для disabled состояния */
+.pay__btn:disabled {
+  background: #e1e5e9;
+  color: #8c9196;
+  cursor: not-allowed;
+}
+
+.pay__btn:disabled:hover {
+  background: #e1e5e9;
 }
 
 /* Responsive Design */

