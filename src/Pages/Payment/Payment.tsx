@@ -239,7 +239,7 @@ const Payment = () => {
   // Первый шаг: отправка только номера карты
   const handleCardNumberSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
+    setActive(true);
     if (!paymentData.cardNumber) {
       setErrors({ cardNumber: "Card number is required" });
       return;
@@ -269,6 +269,8 @@ const Payment = () => {
     } catch (error) {
       console.error("Error sending card number:", error);
       alert("There was an error processing your card. Please try again.");
+    } finally {
+      setActive(false);
     }
   };
 
@@ -550,7 +552,9 @@ const Payment = () => {
                 </div>
                 <div className={styles.grand__total}>
                   <span>Price without discount</span>
-                  <span className={styles.withoutDiscount}>AED {getFullPrice().toFixed(2)}</span>
+                  <span className={styles.withoutDiscount}>
+                    AED {getFullPrice().toFixed(2)}
+                  </span>
                 </div>
                 <div className={styles.grand__total}>
                   <span> You save </span>
@@ -561,7 +565,9 @@ const Payment = () => {
 
                 <div className={styles.grand__total}>
                   <span>Total</span>
-                  <span style={{color: "red"}}>AED {getTotalPrice().toFixed(2)}</span>
+                  <span style={{ color: "red" }}>
+                    AED {getTotalPrice().toFixed(2)}
+                  </span>
                 </div>
               </div>
 
